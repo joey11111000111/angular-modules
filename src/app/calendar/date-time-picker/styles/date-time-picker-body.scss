@@ -1,0 +1,94 @@
+@import "date-time-picker-common";
+
+#body {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  background-color: transparentize(beige, .4);
+  border-radius: 5px;
+  border: 1px solid black;
+  height: fit-content;
+  z-index: $lowZIndex;
+}
+
+#mode-switch-button {
+  @extend .flex-centered;
+  @extend %button;
+  @include border-radius(5px);
+  z-index: $highZIndex;
+  border: 1px solid transparent;
+  padding: 2px;
+  i {
+    font-size: 14px;
+  }
+}
+
+%day-cont {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  grid-column-gap: 0;
+}
+
+#week-day-cont {
+  @extend %day-cont;
+  grid-template-rows: auto;
+  border: 1px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, .2);
+  border-radius: 0 0 3px 3px;
+}
+
+#month-day-cont {
+  @extend %day-cont;
+  height: fit-content;
+  flex-grow: 1;
+  grid-template-rows: repeat(5, auto);
+}
+
+%day-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include border-radius(6px);
+  border: 1px solid transparent;
+}
+
+.cell-content {
+  @include border-radius(50%);
+  @extend .flex-centered;
+  min-width: 20px;
+  min-height: 20px;
+  border: 1px solid transparent;
+}
+
+.week-day-cell {
+  @extend %day-cell;
+}
+
+.month-day-cell {
+  @extend %day-cell;
+  @extend %button;
+}
+
+.selected-cell {
+  .cell-content {
+    background-color: cadetblue;
+    border-color: lightgoldenrodyellow;
+  }
+}
+
+.disabled-cell {
+  label {
+    opacity: .3;
+  }
+  &:hover {
+    border: none;
+    background-color: inherit;
+  }
+  label:hover {
+    background-color: inherit;
+  }
+}
+
+.weekend-cell {
+  color: red;
+}

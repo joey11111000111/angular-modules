@@ -1,0 +1,60 @@
+@import "date-time-picker-common";
+
+$sharedTransition: all .25s;
+
+#header {
+  @extend .flex-centered;
+  height: 30px;
+  flex-direction: row;
+}
+
+%navigator-cont {
+  z-index: $highZIndex;
+  display: flex;
+  flex-grow: 0;
+  align-items: center;
+  @include side-padding(5px);
+  *:first-child {
+    margin-right: 5px;
+  }
+  i {
+    font-size: 18px;
+    @include side-padding(6px);
+    @include border-radius(4px);
+  }
+}
+
+#left-navigator-cont {
+  @extend %navigator-cont;
+  justify-content: flex-start;
+}
+
+#right-navigator-cont {
+  @extend %navigator-cont;
+  justify-content: flex-end;
+}
+
+.navigator-button {
+  @extend %button;
+  transition: $sharedTransition;
+}
+
+.icon-cont {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#mode-switch-cont {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.navigator-active {
+  .navigator-button {
+    background-color: gold;
+    border-color: black;
+    transition: $sharedTransition;
+  }
+}

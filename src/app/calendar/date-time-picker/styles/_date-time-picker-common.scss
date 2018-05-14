@@ -1,0 +1,47 @@
+$primaryBgColor: gold;
+$secondaryBgColor: rgba(245, 245, 220, 0.6);
+$selectionColor: blue;
+$textColor: black;
+
+// Button background and border colors
+$buttonBgColor: transparent;
+$buttonBorderColor: transparent;
+//$buttonHoverBgColor: darken($primaryBgColor, 15);
+$buttonHoverBgColor: mix($primaryBgColor, $secondaryBgColor);
+$buttonHoverBorderColor: transparentize($textColor, .2);
+$buttonActiveBgColor: #bc5e1b;
+$buttonActiveBorderColor: black;
+
+$lowZIndex: 100;
+$mediumZIndex: 101;
+$highZIndex: 102;
+
+%button {
+  background-color: $buttonBgColor;
+  border: 1px solid $buttonBorderColor;
+  &:hover {
+    background-color: $buttonHoverBgColor;
+    border-color: $buttonHoverBorderColor;
+  }
+  &:active {
+    background-color: $buttonActiveBgColor;
+    border-color: $buttonActiveBorderColor;
+  }
+}
+
+@mixin border-radius($amount) {
+  -webkit-border-radius: $amount;
+  -moz-border-radius: $amount;
+  border-radius: $amount;
+}
+
+@mixin side-padding($amount) {
+  padding-left: $amount;
+  padding-right: $amount;
+}
+
+.flex-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

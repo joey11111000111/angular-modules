@@ -1,0 +1,57 @@
+<ng-container *ngIf="visible">
+  <div id="main-overlay-cont" *ngIf="visible" [class.navigator-active]="navigatorOverlayVisible" @flipInOut>
+
+    <div id="navigator-overlay-cont" *ngIf="navigatorOverlayVisible" @slideFromTop>
+      <app-navigator-overlay [selectedMonth]="dayGridManager.getDisplayedMonth()"
+                             (selectedMonthChange)="dayGridManager.displayMonth($event)"
+                             [(visible)]="navigatorOverlayVisible">
+      </app-navigator-overlay>
+    </div>
+
+    <div id="dt-picker-cont">
+      <div id="header">
+        <div id="left-navigator-cont">
+          <i (click)="dayGridManager.showPrevYear()" class="material-icons navigator-button">fast_rewind</i>
+          <i (click)="dayGridManager.showPrevMonth()" class="material-icons navigator-button">navigate_before</i>
+        </div>
+        <div id="mode-switch-cont" class="flex-centered">
+      <span id="mode-switch-button" (click)="toggleNavigationOverlay()">
+        <label>{{dayGridManager.getDisplayedMonth() | date: "MMM yyyy"}}</label>
+        <i class="material-icons"><i class="material-icons">keyboard_arrow_down</i></i>
+      </span>
+        </div>
+        <div id="right-navigator-cont">
+          <i (click)="dayGridManager.showNextMonth()" class="material-icons navigator-button">keyboard_arrow_right</i>
+          <i (click)="dayGridManager.showNextYear()" class="material-icons navigator-button">fast_forward</i>
+        </div>
+      </div>
+
+      <div id="body">
+        <div id="week-day-cont">
+          <div class="week-day-cell" *ngFor="let weekDay of weekDayNames">
+        <span class="cell-content">
+          <label>{{weekDay}}</label>
+        </span>
+          </div>
+        </div>
+        <div id="month-day-cont">
+          <div class="month-day-cell"
+               *ngFor="let monthDayGrid of dayGridManager.gridsToDisplay"
+               [class.disabled-cell]="!monthDayGrid.isFromDisplayedMonth"
+               [class.weekend-cell]="monthDayGrid.isWeekEnd"
+               [class.selected-cell]="monthDayGrid.isSelected"
+               (click)="handleDateSelect(monthDayGrid)">
+            <div class="cell-content">
+              <label>{{monthDayGrid.date}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="footer">
+        <span id="today-btn" class="navigator-button" (click)="dayGridManager.showThisMonth()">Today</span>
+      </div>
+
+    </div>
+  </div>
+</ng-container>

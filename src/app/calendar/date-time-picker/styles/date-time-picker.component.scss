@@ -1,0 +1,40 @@
+@import "date-time-picker-common";
+
+#main-overlay-cont {
+  position: absolute;
+  transform-origin: top;
+  display: flex;
+  width: 40vw;
+  height: 50vh;
+  min-width: 250px;
+  min-height: 180px;
+  background: linear-gradient(gold, darken(gold, 20), darken(gold, 8));
+  color: black;
+  border: 1px solid black;
+}
+
+#dt-picker-cont {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  padding: 5px;
+}
+
+* {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  font-size: small;
+}
+
+#navigator-overlay-cont {
+  z-index: $mediumZIndex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 101;
+  background-color: rgba(0, 0, 0, .6);
+}

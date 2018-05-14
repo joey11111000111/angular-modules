@@ -1,0 +1,11 @@
+<div id="main-cont">
+  <div id="year-chooser-cont" (mousewheel)="handleScroll($event)">
+    <input id="yearInput" [(ngModel)]="selectedYear">
+  </div>
+  <hr id="year-month-separator">
+  <div id="month-chooser-cont">
+    <div class="month-grid" *ngFor="let monthGrid of monthList" [class.selected-month]="monthGrid.isSelected" (click)="handleSelection(monthGrid)">
+      <label>{{monthGrid.label}}</label>
+    </div>
+  </div>
+</div>

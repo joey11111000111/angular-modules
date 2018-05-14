@@ -1,0 +1,14 @@
+@import "date-time-picker-common";
+
+#footer {
+  @extend .flex-centered;
+  height: 20px;
+  padding-top: 4px;
+}
+
+#today-btn {
+  @extend %button;
+  z-index: $highZIndex;
+  @include border-radius(10px);
+  padding: 2px 8px;
+}

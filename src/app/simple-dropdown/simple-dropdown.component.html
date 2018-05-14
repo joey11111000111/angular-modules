@@ -1,0 +1,16 @@
+<div id="simple-dropdown-root" (focus)="handleFocus($event)" tabindex="1">
+
+  <ng-container *ngTemplateOutlet="labelTemplate;context: selectedOption"></ng-container>
+
+  <ng-template #defaultLabelTemplate>
+    <div id="label-row" (click)="togglePanel()">
+      <span id="displayed-label">{{selectedOption.label}}</span>
+      <span id="dropdown-button">V</span>
+    </div>
+  </ng-template>
+
+  <div id="option-list-container" *ngIf="panelVisible" @appear>
+    <span class="option-row" (click)="handleOptionClicked($event, i)" *ngFor="let option of options; let i = index">{{option.label}}</span>
+  </div>
+
+</div>
