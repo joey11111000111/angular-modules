@@ -17,7 +17,8 @@
         <div id="mode-switch-cont" class="flex-centered">
           <span id="mode-switch-button" (click)="toggleNavigationOverlay()">
             <label>{{dayGridManager.getDisplayedMonth() | date: "MMM yyyy"}}</label>
-            <i class="material-icons"><i class="material-icons">keyboard_arrow_down</i></i>
+            <i *ngIf="navigatorOverlayVisible" class="material-icons">keyboard_arrow_up</i>
+            <i *ngIf="!navigatorOverlayVisible" class="material-icons">keyboard_arrow_down</i>
           </span>
         </div>
         <div id="right-navigator-cont">

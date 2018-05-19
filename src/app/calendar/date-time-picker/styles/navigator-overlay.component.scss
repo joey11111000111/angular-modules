@@ -62,16 +62,14 @@
   background-color: $secondarySelectionColor;
 }
 
-#spinner-cont {
+.spinner-cont {
   display: flex;
   flex-direction: column;
   position: absolute;
-  right: 6.2em;
   color: $secondaryTextColor;
   i {
+    @extend .flex-centered;
     font-size: 100%;
-    display: flex;
-    align-items: center;
     height: .7em;
     @include border-radius(.2em);
     &:hover {
@@ -81,4 +79,12 @@
       background-color: darken($secondarySelectionColor, 20);
     }
   }
+}
+
+.left-spinner-cont {
+  transform: translateX(-3em);
+}
+
+.right-spinner-cont {
+  transform: translateX(3em);
 }

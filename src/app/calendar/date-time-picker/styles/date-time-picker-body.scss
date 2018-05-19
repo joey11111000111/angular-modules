@@ -4,7 +4,7 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  background-color: transparentize(beige, .4);
+  background-color: transparentize($secondaryTextColor, .4);
   @include border-radius(.4em);
   border: .08em solid black;
   height: fit-content;
@@ -20,7 +20,7 @@
 #week-day-cont {
   @extend %day-cont;
   grid-template-rows: auto;
-  border: 1px solid transparent;
+  border: .08em solid transparent;
   border-bottom-color: rgba(0, 0, 0, .2);
   border-radius: 0 0 .35em .35em;
 }
@@ -59,8 +59,8 @@
 
 .selected-cell {
   .cell-content {
-    background-color: cadetblue;
-    border-color: lightgoldenrodyellow;
+    background-color: transparentize($primarySelectionColor, .4);
+    border-color: $secondarySelectionColor;
   }
 }
 
