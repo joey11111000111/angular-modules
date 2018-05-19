@@ -27,7 +27,7 @@
         </div>
       </div>
 
-      <div id="body">
+      <div id="body" (mousewheel)="handleMouseWheelOnBody($event)">
         <div id="week-day-cont">
           <div class="week-day-cell" *ngFor="let weekDay of weekDayNames">
         <span class="cell-content">
@@ -35,7 +35,7 @@
         </span>
           </div>
         </div>
-        <div id="month-day-cont">
+        <div id="month-day-cont" [@fadeOutIn]="changeState">
           <div class="month-day-cell"
                *ngFor="let monthDayGrid of dayGridManager.gridsToDisplay"
                [class.disabled-cell]="!monthDayGrid.isFromDisplayedMonth"

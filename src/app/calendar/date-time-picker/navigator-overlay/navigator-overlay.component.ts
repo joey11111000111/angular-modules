@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {isNullOrUndefined} from 'util';
-import {DebugLog} from '../../../util/debug-log';
 
 @Component({
   selector: 'app-navigator-overlay',
@@ -75,7 +74,7 @@ export class NavigatorOverlayComponent {
     }
   }
 
-  public handleScroll(event: any): void {
+  public handleMouseWheelOnInput(event: any): void {
     const yearModifier = event.deltaY > 0 ? -1 : 1;
     this.selectedYear += yearModifier;
     event.stopPropagation();

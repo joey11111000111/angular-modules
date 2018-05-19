@@ -1,5 +1,5 @@
 <div id="main-cont">
-  <div id="year-chooser-cont" (mousewheel)="handleScroll($event)">
+  <div id="year-chooser-cont" (mousewheel)="handleMouseWheelOnInput($event)">
     <div class="spinner-cont left-spinner-cont">
       <i (click)="incrementYear()" class="material-icons navigator-button">arrow_drop_up</i>
       <i (click)="decrementYear()" class="material-icons navigator-button">arrow_drop_down</i>

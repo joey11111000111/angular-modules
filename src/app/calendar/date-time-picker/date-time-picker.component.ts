@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Inp
 import {isNullOrUndefined} from 'util';
 import {DayGridManager} from './day-grid-manager';
 import {DayGrid} from './day-grid';
-import {animate, animateChild, query, state, style, transition, trigger} from '@angular/animations';
+import {animate, animateChild, keyframes, query, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-date-time-picker',
@@ -32,6 +32,13 @@ import {animate, animateChild, query, state, style, transition, trigger} from '@
       })),
       transition('* <=> void', animate('100ms ease-in')),
     ]),
+    trigger('fadeOutIn', [
+      transition('monthChange <=> *', animate('250ms ease-out', keyframes([
+        style({'transform': 'scale(1)', offset: 0}),
+        style({'transform': 'scale(.95)', offset: .5}),
+        style({'transform': 'scale(1)', offset: 1})
+      ])))
+    ])
   ]
 })
 export class DateTimePickerComponent {
@@ -44,6 +51,8 @@ export class DateTimePickerComponent {
   private _visible: boolean;
   public readonly visibleChange: EventEmitter<boolean>;
 
+  private animateMonthChange: boolean;
+
   public readonly weekDayNames = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
   constructor(public dayGridManager: DayGridManager, private cd: ChangeDetectorRef) {
@@ -52,6 +61,16 @@ export class DateTimePickerComponent {
     this._visible = true;
     this.navigatorOverlayVisible = false;
     this.dayGridManager.displayMonth(new Date());
+    this.dayGridManager.onDisplayChange.subscribe(() => this.animateMonthChange = true);
+  }
+
+  get changeState(): string {
+    if (this.animateMonthChange) {
+      this.animateMonthChange = false;
+      setTimeout(() => this.cd.detectChanges());
+      return 'monthChange';
+    }
+    return '*';
   }
 
   get visible(): boolean {
@@ -85,6 +104,17 @@ export class DateTimePickerComponent {
     }
     this.dayGridManager.selectGrid(selectedGrid);
     this.saveAndEmitSelectedDateTime();
+  }
+
+  public handleMouseWheelOnBody(event): void {
+    if (event.deltaY > 0) {
+      this.dayGridManager.showPrevMonth(this._selectedDateTime);
+    } else {
+      this.dayGridManager.showNextMonth(this._selectedDateTime);
+    }
+    // this.changingMonth = true;
+    event.stopPropagation();
+    event.preventDefault();
   }
 
   private saveAndEmitSelectedDateTime(): void {

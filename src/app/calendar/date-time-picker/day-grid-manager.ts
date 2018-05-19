@@ -1,7 +1,7 @@
 import {isNullOrUndefined} from 'util';
 import {DateFns} from '../../util/date-fns';
 import {DayGrid} from './day-grid';
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 
 @Injectable()
 export class DayGridManager {
@@ -9,11 +9,13 @@ export class DayGridManager {
   private allDaysOfDisplayedMonth: DayGrid[];
   private selectedGrid: DayGrid;
   private displayedMonth: Date;
+  public readonly onDisplayChange: EventEmitter<void>;
 
   constructor() {
     this.allDaysOfDisplayedMonth = [];
     this.displayedMonth = null;
     this.selectedGrid = null;
+    this.onDisplayChange = new EventEmitter<void>();
   }
 
   public get gridsToDisplay(): DayGrid[] {
@@ -111,6 +113,7 @@ export class DayGridManager {
     if (!isNullOrUndefined(selectedDay)) {
       this.markSelectedDayIfDisplayed(selectedDay);
     }
+    this.onDisplayChange.emit();
   }
 
   private pushBeforeDays(): void {
