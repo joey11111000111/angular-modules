@@ -2,13 +2,18 @@
 
 #footer {
   @extend .flex-centered;
-  height: 20px;
-  padding-top: 4px;
+  height: 1.4em;
+  padding-top: .3em;
 }
 
 #today-btn {
   @extend %button;
-  z-index: $highZIndex;
-  @include border-radius(10px);
-  padding: 2px 8px;
+  z-index: $topLayer;
+  padding: .15em .6em;
+}
+
+.navigator-active {
+  #today-btn {
+    @extend %coveredTopLayerButton;
+  }
 }

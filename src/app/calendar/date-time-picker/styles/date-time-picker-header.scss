@@ -1,26 +1,35 @@
 @import "date-time-picker-common";
 
-$sharedTransition: all .25s;
-
 #header {
   @extend .flex-centered;
-  height: 30px;
+  height: 2.1em;
   flex-direction: row;
 }
 
+#mode-switch-button {
+  @extend .flex-centered;
+  @extend %button;
+  z-index: $topLayer;
+  border: .08em solid transparent;
+  padding: .16em;
+  i {
+    font-size: 1em;
+  }
+}
+
 %navigator-cont {
-  z-index: $highZIndex;
+  z-index: $topLayer;
   display: flex;
   flex-grow: 0;
   align-items: center;
-  @include side-padding(5px);
+  @include side-padding(.4em);
   *:first-child {
-    margin-right: 5px;
+    margin-right: .4em;
   }
   i {
-    font-size: 18px;
-    @include side-padding(6px);
-    @include border-radius(4px);
+    font-size: 1.2em;
+    @include side-padding(.45em);
+    @include border-radius(.35em);
   }
 }
 
@@ -36,7 +45,7 @@ $sharedTransition: all .25s;
 
 .navigator-button {
   @extend %button;
-  transition: $sharedTransition;
+  transition: $quickTransition;
 }
 
 .icon-cont {
@@ -52,9 +61,7 @@ $sharedTransition: all .25s;
 }
 
 .navigator-active {
-  .navigator-button {
-    background-color: gold;
-    border-color: black;
-    transition: $sharedTransition;
+  .navigator-button, #mode-switch-button {
+    @extend %coveredTopLayerButton;
   }
 }

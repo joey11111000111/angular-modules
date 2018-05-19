@@ -76,12 +76,28 @@ export class NavigatorOverlayComponent {
   }
 
   public handleScroll(event: any): void {
-    // DebugLog.labeledObjectLog('event', event);
     const yearModifier = event.deltaY > 0 ? -1 : 1;
     this.selectedYear += yearModifier;
-    console.log('deltaY: ' + event.deltaY);
     event.stopPropagation();
     event.preventDefault();
+  }
+
+  public incrementYear(): void {
+    this.selectedYear = this._selectedYear + 1;
+  }
+
+  public decrementYear(): void {
+    this.selectedYear = this._selectedYear - 1;
+  }
+
+  public handleInputKeyDown(event): void {
+    if (event.code === 'ArrowUp') {
+      this.incrementYear();
+      event.preventDefault();
+    } else if (event.code === 'ArrowDown') {
+      this.decrementYear();
+      event.preventDefault();
+    }
   }
 
 }

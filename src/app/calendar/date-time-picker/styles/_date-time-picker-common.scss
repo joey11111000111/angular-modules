@@ -1,33 +1,25 @@
-$primaryBgColor: gold;
-$secondaryBgColor: rgba(245, 245, 220, 0.6);
-$selectionColor: blue;
-$textColor: black;
+// Main color variables
+$primaryBgColor: rgb(20, 180, 20);
+$secondaryBgColor: rgb(30, 215, 30);
+$primarySelectionColor: gold;
+$secondarySelectionColor: cornflowerblue;
+$primaryTextColor: black;
+$secondaryTextColor: antiquewhite;
 
 // Button background and border colors
 $buttonBgColor: transparent;
 $buttonBorderColor: transparent;
-//$buttonHoverBgColor: darken($primaryBgColor, 15);
-$buttonHoverBgColor: mix($primaryBgColor, $secondaryBgColor);
-$buttonHoverBorderColor: transparentize($textColor, .2);
-$buttonActiveBgColor: #bc5e1b;
-$buttonActiveBorderColor: black;
+$buttonHoverBgColor: mix($primaryBgColor, $primarySelectionColor);
+$buttonHoverBorderColor: transparentize($primaryTextColor, .2);
+$buttonActiveBgColor: darken(mix($primaryBgColor, $secondaryBgColor), 15);
+$buttonActiveBorderColor: $primaryTextColor;
 
-$lowZIndex: 100;
-$mediumZIndex: 101;
-$highZIndex: 102;
+// Layer definitions
+$bottomLayer: 100;
+$midLayer: 101;
+$topLayer: 102;
 
-%button {
-  background-color: $buttonBgColor;
-  border: 1px solid $buttonBorderColor;
-  &:hover {
-    background-color: $buttonHoverBgColor;
-    border-color: $buttonHoverBorderColor;
-  }
-  &:active {
-    background-color: $buttonActiveBgColor;
-    border-color: $buttonActiveBorderColor;
-  }
-}
+$quickTransition: all .2s;
 
 @mixin border-radius($amount) {
   -webkit-border-radius: $amount;
@@ -38,6 +30,34 @@ $highZIndex: 102;
 @mixin side-padding($amount) {
   padding-left: $amount;
   padding-right: $amount;
+}
+
+%button {
+  @include border-radius(.4em);
+  background-color: $buttonBgColor;
+  border: .08em solid $buttonBorderColor;
+  &:hover {
+    background-color: $buttonHoverBgColor;
+    border-color: $buttonHoverBorderColor;
+  }
+  &:active {
+    background-color: $buttonActiveBgColor;
+    border-color: $buttonActiveBorderColor;
+  }
+}
+
+%coveredTopLayerButton {
+  transition: $quickTransition;
+  background-color: darken($primaryBgColor, 10);
+  border-color: $primaryTextColor;
+  &:hover {
+    background-color: $primaryBgColor;
+    border-color: $primaryTextColor;
+  }
+  &:active {
+    background-color: darken(mix($primaryBgColor, $secondaryBgColor), 15);
+    border-color: $primaryTextColor;
+  }
 }
 
 .flex-centered {

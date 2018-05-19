@@ -5,22 +5,10 @@
   flex-grow: 1;
   flex-direction: column;
   background-color: transparentize(beige, .4);
-  border-radius: 5px;
-  border: 1px solid black;
+  @include border-radius(.4em);
+  border: .08em solid black;
   height: fit-content;
-  z-index: $lowZIndex;
-}
-
-#mode-switch-button {
-  @extend .flex-centered;
-  @extend %button;
-  @include border-radius(5px);
-  z-index: $highZIndex;
-  border: 1px solid transparent;
-  padding: 2px;
-  i {
-    font-size: 14px;
-  }
+  z-index: $bottomLayer;
 }
 
 %day-cont {
@@ -34,7 +22,7 @@
   grid-template-rows: auto;
   border: 1px solid transparent;
   border-bottom-color: rgba(0, 0, 0, .2);
-  border-radius: 0 0 3px 3px;
+  border-radius: 0 0 .35em .35em;
 }
 
 #month-day-cont {
@@ -48,16 +36,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  @include border-radius(6px);
+  @include border-radius(.45em);
   border: 1px solid transparent;
 }
 
 .cell-content {
   @include border-radius(50%);
   @extend .flex-centered;
-  min-width: 20px;
-  min-height: 20px;
-  border: 1px solid transparent;
+  min-width: 1.4em;
+  min-height: 1.4em;
+  border: .08em solid transparent;
 }
 
 .week-day-cell {

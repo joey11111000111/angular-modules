@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angular/core';
 import {isNullOrUndefined} from 'util';
 import {DayGridManager} from './day-grid-manager';
 import {DayGrid} from './day-grid';
@@ -46,7 +46,7 @@ export class DateTimePickerComponent {
 
   public readonly weekDayNames = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
-  constructor(public dayGridManager: DayGridManager) {
+  constructor(public dayGridManager: DayGridManager, private cd: ChangeDetectorRef) {
     this.onSelect = new EventEmitter<Date>();
     this.visibleChange = new EventEmitter<boolean>();
     this._visible = true;

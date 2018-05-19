@@ -15,10 +15,10 @@
           <i (click)="dayGridManager.showPrevMonth()" class="material-icons navigator-button">navigate_before</i>
         </div>
         <div id="mode-switch-cont" class="flex-centered">
-      <span id="mode-switch-button" (click)="toggleNavigationOverlay()">
-        <label>{{dayGridManager.getDisplayedMonth() | date: "MMM yyyy"}}</label>
-        <i class="material-icons"><i class="material-icons">keyboard_arrow_down</i></i>
-      </span>
+          <span id="mode-switch-button" (click)="toggleNavigationOverlay()">
+            <label>{{dayGridManager.getDisplayedMonth() | date: "MMM yyyy"}}</label>
+            <i class="material-icons"><i class="material-icons">keyboard_arrow_down</i></i>
+          </span>
         </div>
         <div id="right-navigator-cont">
           <i (click)="dayGridManager.showNextMonth()" class="material-icons navigator-button">keyboard_arrow_right</i>
