@@ -40,6 +40,17 @@ export class DayGridManager {
     return !isNullOrUndefined(this.selectedGrid) && this.selectedGrid.date === grid.date;
   }
 
+  public hasSelected(): boolean {
+    return !isNullOrUndefined(this.selectedGrid);
+  }
+
+  public clearSelection(): void {
+    if (this.hasSelected()) {
+      this.selectedGrid.isSelected = false;
+      this.selectedGrid = null;
+    }
+  }
+
   public selectGrid(gridToSelect: DayGrid): void {
     if (!this.isSelectedGrid(gridToSelect)) {
       if (!isNullOrUndefined(this.selectedGrid)) {
@@ -75,6 +86,7 @@ export class DayGridManager {
   }
 
   public displayMonth(monthToDisplay: Date, selectedDate?: Date): void {
+    this.clearSelection();
     if (isNullOrUndefined(this.displayedMonth)) {
       this.lookUpDaysToDisplay(monthToDisplay, selectedDate);
       return;
@@ -100,7 +112,7 @@ export class DayGridManager {
 
     const selectedDate = selectedDay.getDate();
     const selectedDayGrid = this.allDaysOfDisplayedMonth.find(dayGrid => dayGrid.date === selectedDate);
-    selectedDayGrid.isSelected = true;
+    this.selectGrid(selectedDayGrid);
   }
 
   private lookUpDaysToDisplay(monthToDisplay: Date, selectedDay?: Date): void {

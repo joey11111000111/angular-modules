@@ -1,19 +1,20 @@
 @import "date-time-picker-common";
 
 #footer {
-  @extend .flex-centered;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: 1.4em;
   padding-top: .3em;
 }
 
-#today-btn {
+.footer-button {
   @extend %button;
-  z-index: $topLayer;
   padding: .15em .6em;
 }
 
 .navigator-active {
-  #today-btn {
+  .footer-button {
     @extend %coveredTopLayerButton;
   }
 }

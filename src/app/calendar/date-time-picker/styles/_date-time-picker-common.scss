@@ -36,6 +36,7 @@ $quickTransition: all .2s;
   @include border-radius(.4em);
   background-color: $buttonBgColor;
   border: .08em solid $buttonBorderColor;
+  z-index: $topLayer;
   &:hover {
     background-color: $buttonHoverBgColor;
     border-color: $buttonHoverBorderColor;
@@ -48,14 +49,14 @@ $quickTransition: all .2s;
 
 %coveredTopLayerButton {
   transition: $quickTransition;
-  background-color: darken($primaryBgColor, 10);
+  background-color: darken($primaryBgColor, 15);
   border-color: $primaryTextColor;
   &:hover {
-    background-color: $primaryBgColor;
+    background-color: darken($buttonHoverBgColor, 10);
     border-color: $primaryTextColor;
   }
   &:active {
-    background-color: darken(mix($primaryBgColor, $secondaryBgColor), 15);
+    background-color: darken(mix($primaryBgColor, $secondaryBgColor), 25);
     border-color: $primaryTextColor;
   }
 }
