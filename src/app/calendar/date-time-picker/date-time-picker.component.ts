@@ -3,7 +3,6 @@ import {isNullOrUndefined} from 'util';
 import {DayGridManager} from './day-grid-manager';
 import {DayGrid} from './day-grid';
 import {animate, keyframes, state, style, transition, trigger} from '@angular/animations';
-import {DateFns} from '../../util/date-fns';
 
 @Component({
   selector: 'app-date-time-picker',
@@ -39,7 +38,18 @@ import {DateFns} from '../../util/date-fns';
         style({'transform': 'scale(.95)', offset: .5}),
         style({'transform': 'scale(1)', offset: 1})
       ])))
-    ])
+    ]),
+    trigger('spinInOut', [
+      state('void', style({
+        'transform': 'rotateX(90deg)',
+        'background-color': 'rgba(200, 200, 200, .5)',
+        'border': '1px solid black',
+      })),
+      transition(':enter', animate('300ms linear')),
+      transition(':leave', animate('300ms linear'))
+      // transition(':enter', animate('300ms ease-out')),
+      // transition(':leave', animate('300ms ease-in'))
+    ]),
   ]
 })
 export class DateTimePickerComponent {
@@ -47,7 +57,10 @@ export class DateTimePickerComponent {
   private _selectedDateTime: Date;
   @Output() onSelect: EventEmitter<Date>;
   @Input() defaultMonthToDisplay: Date;
+  @Input() timePicker: boolean;
   public navigatorOverlayVisible: boolean;
+  public dateFooterVisible: boolean;
+  public timeFooterVisible: boolean;
 
   private _visible: boolean;
   public readonly visibleChange: EventEmitter<boolean>;
@@ -64,6 +77,10 @@ export class DateTimePickerComponent {
     this.navigatorOverlayVisible = false;
     this.dayGridManager.displayMonth(new Date());
     this.dayGridManager.onDisplayChange.subscribe(() => this.animateMonthChange = true);
+    // temp
+    this.dateFooterVisible = true;
+    this.timeFooterVisible = false;
+    this.timePicker = true;
   }
 
   get changeState(): string {
@@ -162,5 +179,25 @@ export class DateTimePickerComponent {
     this.dayGridManager.showThisMonth(this._selectedDateTime);
   }
 
+  public changeFooter(): void {
+    if (this.timePicker) {
+      const regularToggle = fieldName => this[fieldName] = !this[fieldName];
+      const timeoutToggle = fieldName => {
+        setTimeout(() => {
+          this[fieldName] = !this[fieldName];
+          this.cd.detectChanges();
+        }, 315);
+      };
+
+      if (this.dateFooterVisible) {
+        regularToggle('dateFooterVisible');
+        timeoutToggle('timeFooterVisible');
+      } else {
+        regularToggle('timeFooterVisible');
+        timeoutToggle('dateFooterVisible');
+      }
+
+    }
+  }
 
 }

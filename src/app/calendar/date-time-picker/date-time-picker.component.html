@@ -50,9 +50,24 @@
       </div>
 
       <div id="footer">
-        <span class="footer-button" (click)="clear()">Clear</span>
-        <span class="footer-button" (click)="showThisMonth()">Today</span>
-        <span class="footer-button" [class.disabled]="!hasSelected()" (click)="showSelectedMonth()">Selected</span>
+        <span id="date-footer" *ngIf="dateFooterVisible" @spinInOut>
+          <span class="footer-control-cont">
+            <span class="footer-button" (click)="clear()">Clear</span>
+            <span class="footer-button" (click)="showThisMonth()">Today</span>
+            <span class="footer-button" [class.disabled]="!hasSelected()" (click)="showSelectedMonth()">Selected</span>
+          </span>
+          <span class="footer-change-button" class="footer-button" (click)="changeFooter()">
+            <i class="material-icons" *ngIf="dateFooterVisible">access_time</i>
+          </span>
+        </span>
+        <span id="time-footer" *ngIf="timeFooterVisible" @spinInOut>
+          <span class="footer-control-cont">
+            <app-time-picker></app-time-picker>
+          </span>
+          <span class="footer-change-button" class="footer-button" (click)="changeFooter()">
+            <i class="material-icons">date_range</i>
+          </span>
+        </span>
       </div>
 
     </div>

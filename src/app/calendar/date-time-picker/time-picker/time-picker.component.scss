@@ -1,0 +1,77 @@
+@import "../styles/date-time-picker-common";
+
+#wrapper {
+  @extend .flex-centered;
+}
+
+#time-picker-container {
+  label {
+    @extend .flex-centered;
+  }
+  .dynamic-label {
+    color: $secondaryTextColor;
+  }
+  .static-label {
+    font-weight: bold;
+    margin-left: .08em;
+    margin-right: .08em;
+  }
+}
+
+#button-container {
+  margin-right: .4em;
+}
+
+.button {
+  @extend %button;
+  @extend .flex-centered;
+  padding: .2em;
+}
+
+.spinner-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: .1em;
+  margin-right: .1em;
+}
+
+.spinner-button {
+  width: .4em;
+  height: .4em;
+  font-size: 130%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .08em;
+  border-radius: .4em;
+  color: $primaryTextColor;
+  &:first-child {
+    margin-bottom: .08em;
+  }
+  &.big-step-spinner {
+    font-size: 150%;
+    color: darken($secondaryTextColor, 20);
+  }
+  &.big-step-spinner:first-child {
+    margin-bottom: .14em;
+  }
+
+}
+.spinner-button:hover {
+  background-color: $primarySelectionColor;
+}
+.spinner-button:active {
+  background-color: darken($primarySelectionColor, 20);
+}
+.big-step-spinner:hover {
+  background-color: $secondarySelectionColor;
+}
+.big-step-spinner:active {
+  background-color: darken($secondarySelectionColor, 20);
+}
+
+#time-picker-container {
+  display: flex;
+}

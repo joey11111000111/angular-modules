@@ -6,4 +6,8 @@ export class DebugLog {
     console.log('--- /' + label + '----------');
   }
 
+  public static inlineLog(label: string, object: any): void {
+    console.log(label + ': ' + object);
+  }
+
 }

@@ -1,0 +1,33 @@
+<div id="wrapper">
+
+  <!-- Buttons -->
+  <div id="button-container">
+    <span id="now-button" class="button" (click)="now()">
+      <label>Now</label>
+    </span>
+  </div>
+
+  <!-- Time picker -->
+  <div id="time-picker-container">
+    <div class="spinner-cont" (mousewheel)="handleHourWheel($event)">
+      <i (click)="incrementHourBy(5)" class="material-icons spinner-button big-step-spinner">arrow_drop_up</i>
+      <i (click)="decrementHourBy(5)" class="material-icons spinner-button big-step-spinner">arrow_drop_down</i>
+    </div>
+    <div class="spinner-cont" (mousewheel)="handleHourWheel($event)">
+      <i (click)="incrementHourBy(1)" class="material-icons spinner-button">arrow_drop_up</i>
+      <i (click)="decrementHourBy(1)" class="material-icons spinner-button">arrow_drop_down</i>
+    </div>
+    <label class="dynamic-label" (mousewheel)="handleHourWheel($event)">{{displayHour}}</label>
+    <label class="static-label" (mousewheel)="stopEvent($event)">:</label>
+    <label class="dynamic-label" (mousewheel)="handleMinuteWheel($event)">{{displayMinute}}</label>
+    <div class="spinner-cont" (mousewheel)="handleMinuteWheel($event)">
+      <i (click)="incrementMinuteBy(1)" class="material-icons spinner-button">arrow_drop_up</i>
+      <i (click)="decrementMinuteBy(1)" class="material-icons spinner-button">arrow_drop_down</i>
+    </div>
+    <div class="spinner-cont" (mousewheel)="handleMinuteWheel($event)">
+      <i (click)="incrementMinuteBy(10)" class="material-icons spinner-button big-step-spinner">arrow_drop_up</i>
+      <i (click)="decrementMinuteBy(10)" class="material-icons spinner-button big-step-spinner">arrow_drop_down</i>
+    </div>
+  </div>
+
+</div>

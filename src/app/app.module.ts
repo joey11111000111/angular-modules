@@ -12,6 +12,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { DateTimePickerComponent } from './calendar/date-time-picker/date-time-picker.component';
 import {UtilModule} from './util/util.module';
 import { NavigatorOverlayComponent } from './calendar/date-time-picker/navigator-overlay/navigator-overlay.component';
+import { TimePickerComponent } from './calendar/date-time-picker/time-picker/time-picker.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { NavigatorOverlayComponent } from './calendar/date-time-picker/navigator
     CalendarComponent,
     DateTimePickerComponent,
     NavigatorOverlayComponent,
+    TimePickerComponent,
   ],
   imports: [
     BrowserModule,
