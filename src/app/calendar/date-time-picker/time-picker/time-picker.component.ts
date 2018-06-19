@@ -1,10 +1,11 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {TimeVo} from './time-vo';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-time-picker',
   templateUrl: './time-picker.component.html',
-  styleUrls: ['./time-picker.component.css']
+  styleUrls: ['./time-picker.component.scss']
 })
 export class TimePickerComponent {
 
@@ -26,8 +27,14 @@ export class TimePickerComponent {
 
   @Input()
   set initialTime(timeVo: TimeVo) {
-    this.hour = timeVo.hour;
-    this.minute = timeVo.minute;
+    if (!isNullOrUndefined(timeVo)) {
+      this.hour = timeVo.hour;
+      this.minute = timeVo.minute;
+    } else {
+      const now = new Date();
+      this.hour = now.getHours();
+      this.minute = now.getMinutes();
+    }
     this.updateDisplayFields();
   }
 

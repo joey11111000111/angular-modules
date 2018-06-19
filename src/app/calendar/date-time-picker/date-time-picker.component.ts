@@ -60,7 +60,7 @@ export class DateTimePickerComponent {
   @Input() timePicker: boolean;
   initialTime: TimeVo;
 
-  @ViewChild('timePicker') timePicker: TimePickerComponent;
+  @ViewChild('timePicker') timePickerComponent: TimePickerComponent;
 
   public navigatorOverlayVisible: boolean;
   public dateFooterVisible: boolean;
@@ -162,8 +162,8 @@ export class DateTimePickerComponent {
 
   private saveAndEmitSelectedDateTime(): void {
     this._selectedDateTime = this.dayGridManager.getSelectedDateTime();
-    if (!isNullOrUndefined(this.timePicker)) {
-      const selectedTime = this.timePicker.getSelectedTime();
+    if (!isNullOrUndefined(this.timePickerComponent)) {
+      const selectedTime = this.timePickerComponent.getSelectedTime();
     }
     this.onSelect.emit(this._selectedDateTime);
   }
