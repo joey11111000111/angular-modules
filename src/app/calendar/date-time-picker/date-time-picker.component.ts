@@ -1,8 +1,10 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {isNullOrUndefined} from 'util';
 import {DayGridManager} from './day-grid-manager';
 import {DayGrid} from './day-grid';
 import {animate, keyframes, state, style, transition, trigger} from '@angular/animations';
+import {TimeVo} from './time-picker/time-vo';
+import {TimePickerComponent} from './time-picker/time-picker.component';
 
 @Component({
   selector: 'app-date-time-picker',
@@ -47,8 +49,6 @@ import {animate, keyframes, state, style, transition, trigger} from '@angular/an
       })),
       transition(':enter', animate('300ms linear')),
       transition(':leave', animate('300ms linear'))
-      // transition(':enter', animate('300ms ease-out')),
-      // transition(':leave', animate('300ms ease-in'))
     ]),
   ]
 })
@@ -58,6 +58,10 @@ export class DateTimePickerComponent {
   @Output() onSelect: EventEmitter<Date>;
   @Input() defaultMonthToDisplay: Date;
   @Input() timePicker: boolean;
+  initialTime: TimeVo;
+
+  @ViewChild('timePicker') timePicker: TimePickerComponent;
+
   public navigatorOverlayVisible: boolean;
   public dateFooterVisible: boolean;
   public timeFooterVisible: boolean;
@@ -113,7 +117,12 @@ export class DateTimePickerComponent {
     }
     if (this._visible && !isNullOrUndefined(this._selectedDateTime)) {
       this.dayGridManager.displayMonth(this._selectedDateTime, this._selectedDateTime);
+      this.initialTime = TimeVo.fromDate(this._selectedDateTime);
     }
+  }
+
+  public handleTimeChange(selectedTime: TimeVo): void {
+
   }
 
   public toggleNavigationOverlay(): void {
@@ -140,6 +149,7 @@ export class DateTimePickerComponent {
 
   public clear(): void {
     this._selectedDateTime = null;
+    this.initialTime = null;
     this.dayGridManager.clearSelection();
     this.cd.detectChanges();
   }
@@ -152,6 +162,9 @@ export class DateTimePickerComponent {
 
   private saveAndEmitSelectedDateTime(): void {
     this._selectedDateTime = this.dayGridManager.getSelectedDateTime();
+    if (!isNullOrUndefined(this.timePicker)) {
+      const selectedTime = this.timePicker.getSelectedTime();
+    }
     this.onSelect.emit(this._selectedDateTime);
   }
 

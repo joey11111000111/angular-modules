@@ -36,6 +36,8 @@
 
 .footer-change-button {
   @extend .flex-centered;
+  position: absolute;
+  right: 1em;
   z-index: $topLayer;
-  margin-left: .4em;
+  //margin-left: .4em;
 }

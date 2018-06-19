@@ -19,7 +19,8 @@
 }
 
 #button-container {
-  margin-right: .4em;
+  position: absolute;
+  left: 1em;
 }
 
 .button {
@@ -73,5 +74,9 @@
 }
 
 #time-picker-container {
-  display: flex;
+  @extend .flex-centered;
+}
+
+:host {
+  flex-grow: 1;
 }
