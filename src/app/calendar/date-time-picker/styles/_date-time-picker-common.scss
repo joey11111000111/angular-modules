@@ -1,25 +1,20 @@
-// Main color variables
-$primaryBgColor: rgb(20, 180, 20);
-$secondaryBgColor: rgb(30, 215, 30);
-$primarySelectionColor: gold;
-$secondarySelectionColor: cornflowerblue;
-$primaryTextColor: black;
-$secondaryTextColor: beige;
-
-// Button background and border colors
-$buttonBgColor: transparent;
-$buttonBorderColor: transparent;
-$buttonHoverBgColor: mix($primaryBgColor, $primarySelectionColor);
-$buttonHoverBorderColor: transparentize($primaryTextColor, .2);
-$buttonActiveBgColor: darken(mix($primaryBgColor, $secondaryBgColor), 15);
-$buttonActiveBorderColor: $primaryTextColor;
+//@import "colors/deep-purple-pink";
+//@import "colors/green-yellow";
+//@import "colors/indio-cyan";
+//@import "colors/light-blut-green";
+//@import "colors/dark-green";
+//@import "colors/dark-blue";
+//@import "colors/cyan-yellow";
+//@import "colors/blue-grey";
+//@import "colors/teal-amber";
+@import "colors/blue-amber";
 
 // Layer definitions
 $bottomLayer: 100;
 $midLayer: 101;
 $topLayer: 102;
 
-$quickTransition: all .2s;
+$quickTransition: all .3s;
 
 @mixin border-radius($amount) {
   -webkit-border-radius: $amount;
@@ -35,15 +30,15 @@ $quickTransition: all .2s;
 %button {
   @include border-radius(.4em);
   background-color: $buttonBgColor;
-  border: .08em solid $buttonBorderColor;
   z-index: $topLayer;
+  color: $secondaryTextColor;
+  font-weight: bold;
   &:hover {
     background-color: $buttonHoverBgColor;
-    border-color: $buttonHoverBorderColor;
+    color: $primaryTextColor;
   }
   &:active {
     background-color: $buttonActiveBgColor;
-    border-color: $buttonActiveBorderColor;
   }
 }
 

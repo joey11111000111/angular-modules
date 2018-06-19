@@ -45,7 +45,6 @@ import {TimePickerComponent} from './time-picker/time-picker.component';
       state('void', style({
         'transform': 'rotateX(90deg)',
         'background-color': 'rgba(200, 200, 200, .5)',
-        'border': '1px solid black',
       })),
       transition(':enter', animate('300ms linear')),
       transition(':leave', animate('300ms linear'))

@@ -1,0 +1,19 @@
+// Main color variables
+$primaryBgColor: #2f4050;
+$secondaryBgColor: #0e2031;
+
+$primarySelectionColor: #1ab394;
+$secondarySelectionColor: #197865;
+
+$primaryTextColor: black;
+$secondaryTextColor: white;
+
+// Button background and border colors
+$buttonBgColor: transparent;
+$buttonBorderColor: transparent;
+
+$buttonHoverBgColor: $primarySelectionColor;
+$buttonHoverBorderColor: transparentize($primaryTextColor, .2);
+
+$buttonActiveBgColor: darken($buttonHoverBgColor, 15);
+$buttonActiveBorderColor: $primaryTextColor;

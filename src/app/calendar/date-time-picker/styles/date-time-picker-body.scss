@@ -4,9 +4,8 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  background-color: transparentize($secondaryTextColor, .4);
+  background-color: transparentize(whitesmoke, .1);
   @include border-radius(.4em);
-  border: .08em solid black;
   height: fit-content;
   z-index: $bottomLayer;
 }
@@ -23,6 +22,7 @@
   border: .08em solid transparent;
   border-bottom-color: rgba(0, 0, 0, .2);
   border-radius: 0 0 .35em .35em;
+  background-color: $primarySelectionColor;
 }
 
 #month-day-cont {
@@ -41,10 +41,10 @@
 }
 
 .cell-content {
-  @include border-radius(50%);
+  @include border-radius(0.45em);
   @extend .flex-centered;
-  min-width: 1.4em;
-  min-height: 1.4em;
+  min-width: 1.6em;
+  min-height: 1.6em;
   border: .08em solid transparent;
   transition: 200ms all;
 }
@@ -56,12 +56,15 @@
 .month-day-cell {
   @extend %day-cell;
   @extend %button;
+  font-weight: normal;
+  color: $primaryTextColor;
 }
 
 .selected-cell {
   .cell-content {
     background-color: transparentize($primarySelectionColor, .4);
-    border-color: $secondarySelectionColor;
+    color: $primaryBgColor;
+    font-weight: bolder;
   }
 }
 
@@ -79,5 +82,5 @@
 }
 
 .weekend-cell {
-  color: red;
+  color: rgb(200, 0, 0)
 }

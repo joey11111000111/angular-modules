@@ -10,7 +10,7 @@
       <i (click)="decrementYear()" class="material-icons navigator-button">arrow_drop_down</i>
     </div>
   </div>
-  <hr id="year-month-separator">
+
   <div id="month-chooser-cont">
     <div class="month-grid" *ngFor="let monthGrid of monthList" [class.selected-month]="monthGrid.isSelected" (click)="handleSelection(monthGrid)">
       <label>{{monthGrid.label}}</label>

@@ -2,18 +2,21 @@
 
 #header {
   @extend .flex-centered;
+  padding-bottom: .25em;
   height: 2.1em;
   flex-direction: row;
+  i {
+    font-size: 120%;
+  }
 }
 
 #mode-switch-button {
   @extend .flex-centered;
   @extend %button;
   z-index: $topLayer;
-  border: .08em solid transparent;
   padding: .16em;
   i {
-    font-size: 1em;
+    font-size: 130%;
   }
 }
 
@@ -27,7 +30,6 @@
     margin-right: .4em;
   }
   i {
-    font-size: 1.2em;
     @include side-padding(.45em);
     @include border-radius(.35em);
   }
@@ -45,6 +47,7 @@
 
 .navigator-button {
   @extend %button;
+  //font-size: 140%;
   transition: $quickTransition;
 }
 

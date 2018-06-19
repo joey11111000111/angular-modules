@@ -1,17 +1,27 @@
 @import "date-time-picker-common";
 
+$overlaySize: 20em;
+
 #main-overlay-cont {
   position: absolute;
   transform-origin: top;
   display: flex;
-  width: 40vw;
-  height: 50vh;
-  min-width: 250px;
-  min-height: 180px;
+
+  min-width: $overlaySize;
+  min-height: $overlaySize;
+  max-width: $overlaySize;
+  max-height: $overlaySize;
+  width: $overlaySize;
+  height: $overlaySize;
+
   background: linear-gradient($primaryBgColor, darken($primaryBgColor, 20), darken($primaryBgColor, 8));
   color: black;
-  border: 1px solid black;
   overflow: hidden;
+  font-family: "Roboto","Helvetica Neue",sans-serif;
+
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 #dt-picker-cont {

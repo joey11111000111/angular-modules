@@ -5,10 +5,11 @@
 }
 
 #time-picker-container {
+  font-size: 130%;
   label {
     @extend .flex-centered;
   }
-  .dynamic-label {
+  .dynamic-label, .static-label {
     color: $secondaryTextColor;
   }
   .static-label {
