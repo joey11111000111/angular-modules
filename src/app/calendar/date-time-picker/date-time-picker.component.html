@@ -62,7 +62,7 @@
         </span>
         <span id="time-footer" *ngIf="timeFooterVisible" @spinInOut>
           <span class="footer-control-cont">
-            <app-time-picker #timePicker [initialTime]="initialTime" (onTimeChange)="handleTimeChange($event)"></app-time-picker>
+            <app-time-picker #timePicker [initialTime]="selectedTime" (onTimeChange)="handleTimeChange($event)"></app-time-picker>
           </span>
           <span class="footer-change-button footer-button" (click)="changeFooter()">
             <i class="material-icons">date_range</i>

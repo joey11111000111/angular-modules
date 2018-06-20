@@ -19,27 +19,21 @@ export class TimePickerComponent {
 
   constructor() {
     this.onTimeChange = new EventEmitter<TimeVo>();
-    this.hour = 16;
-    this.minute = 42;
-    this.displayHour = this.hour.toString();
-    this.displayMinute = this.minute.toString();
   }
 
   @Input()
   set initialTime(timeVo: TimeVo) {
-    if (!isNullOrUndefined(timeVo)) {
-      this.hour = timeVo.hour;
-      this.minute = timeVo.minute;
+    if (isNullOrUndefined(timeVo)) {
+      this.applyInitialTime(TimeVo.fromDate(new Date()));
     } else {
-      const now = new Date();
-      this.hour = now.getHours();
-      this.minute = now.getMinutes();
+      this.applyInitialTime(timeVo);
     }
-    this.updateDisplayFields();
   }
 
-  public getSelectedTime(): TimeVo {
-    return TimeVo.of(this.hour, this.minute);
+  private applyInitialTime(initialTimeVo: TimeVo): void {
+    this.hour = initialTimeVo.hour;
+    this.minute = initialTimeVo.minute;
+    this.updateDisplayFields();
   }
 
   public now(): void {

@@ -5,6 +5,7 @@ import {DayGrid} from './day-grid';
 import {animate, keyframes, state, style, transition, trigger} from '@angular/animations';
 import {TimeVo} from './time-picker/time-vo';
 import {TimePickerComponent} from './time-picker/time-picker.component';
+import {DebugLog} from '../../util/debug-log';
 
 @Component({
   selector: 'app-date-time-picker',
@@ -57,7 +58,7 @@ export class DateTimePickerComponent {
   @Output() onSelect: EventEmitter<Date>;
   @Input() defaultMonthToDisplay: Date;
   @Input() timePicker: boolean;
-  initialTime: TimeVo;
+  selectedTime: TimeVo;
 
   @ViewChild('timePicker') timePickerComponent: TimePickerComponent;
 
@@ -116,12 +117,17 @@ export class DateTimePickerComponent {
     }
     if (this._visible && !isNullOrUndefined(this._selectedDateTime)) {
       this.dayGridManager.displayMonth(this._selectedDateTime, this._selectedDateTime);
-      this.initialTime = TimeVo.fromDate(this._selectedDateTime);
+      this.selectedTime = TimeVo.fromDate(this._selectedDateTime);
     }
   }
 
   public handleTimeChange(selectedTime: TimeVo): void {
-
+    this.selectedTime = selectedTime;
+    if (!isNullOrUndefined(this._selectedDateTime)) {
+      this._selectedDateTime = new Date(this._selectedDateTime);
+      TimeVo.setTimeInto(this._selectedDateTime, this.selectedTime);
+      this.onSelect.emit(this._selectedDateTime);
+    }
   }
 
   public toggleNavigationOverlay(): void {
@@ -147,8 +153,10 @@ export class DateTimePickerComponent {
   }
 
   public clear(): void {
+    if (!isNullOrUndefined(this._selectedDateTime)) {
+      this.onSelect.emit(null);
+    }
     this._selectedDateTime = null;
-    this.initialTime = null;
     this.dayGridManager.clearSelection();
     this.cd.detectChanges();
   }
@@ -161,8 +169,8 @@ export class DateTimePickerComponent {
 
   private saveAndEmitSelectedDateTime(): void {
     this._selectedDateTime = this.dayGridManager.getSelectedDateTime();
-    if (!isNullOrUndefined(this.timePickerComponent)) {
-      const selectedTime = this.timePickerComponent.getSelectedTime();
+    if (!isNullOrUndefined(this.selectedTime)) {
+      TimeVo.setTimeInto(this._selectedDateTime, this.selectedTime);
     }
     this.onSelect.emit(this._selectedDateTime);
   }
