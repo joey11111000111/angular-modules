@@ -13,6 +13,8 @@ import { DateTimePickerComponent } from './calendar/date-time-picker/date-time-p
 import {UtilModule} from './util/util.module';
 import { NavigatorOverlayComponent } from './calendar/date-time-picker/navigator-overlay/navigator-overlay.component';
 import { TimePickerComponent } from './calendar/date-time-picker/time-picker/time-picker.component';
+import { DateTimeInputComponent } from './calendar/date-time-input/date-time-input.component';
+import { InputMaskComponent } from './calendar/date-time-input/input-mask/input-mask.component';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { TimePickerComponent } from './calendar/date-time-picker/time-picker/tim
     DateTimePickerComponent,
     NavigatorOverlayComponent,
     TimePickerComponent,
+    DateTimeInputComponent,
+    InputMaskComponent,
   ],
   imports: [
     BrowserModule,

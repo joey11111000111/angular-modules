@@ -22,7 +22,8 @@
   </li>
 
   <label>time picker</label>
-  <app-date-time-picker></app-date-time-picker>
+  <app-date-time-input pattern="dd/mm/yyyy HH:MM"></app-date-time-input>
+  <app-date-time-picker [selectedDateTime]="selectedDateTime" [timePicker]="timePicker"></app-date-time-picker>
 
   <div style="height: 1000px;"></div>
 
