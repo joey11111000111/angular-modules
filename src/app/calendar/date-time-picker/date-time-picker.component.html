@@ -56,15 +56,15 @@
             <span class="footer-button" (click)="showThisMonth()">Today</span>
             <span class="footer-button" [class.disabled]="!hasSelected()" (click)="showSelectedMonth()">Selected</span>
           </span>
-          <span class="footer-change-button footer-button" (click)="changeFooter()">
+          <span class="footer-change-button footer-button" (click)="changeFooter()" *ngIf="timePicker" @fadeOutIn>
             <i class="material-icons" *ngIf="dateFooterVisible">access_time</i>
           </span>
         </span>
         <span id="time-footer" *ngIf="timeFooterVisible" @spinInOut>
           <span class="footer-control-cont">
-            <app-time-picker #timePicker [initialTime]="selectedTime" (onTimeChange)="handleTimeChange($event)"></app-time-picker>
+            <app-time-picker [initialTime]="selectedTime" (onTimeChange)="handleTimeChange($event)"></app-time-picker>
           </span>
-          <span class="footer-change-button footer-button" (click)="changeFooter()">
+          <span class="footer-change-button footer-button" (click)="changeFooter()" *ngIf="timePicker" @fadeOutIn>
             <i class="material-icons">date_range</i>
           </span>
         </span>

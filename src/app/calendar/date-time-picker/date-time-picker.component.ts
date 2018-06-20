@@ -1,11 +1,9 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angular/core';
 import {isNullOrUndefined} from 'util';
 import {DayGridManager} from './day-grid-manager';
 import {DayGrid} from './day-grid';
 import {animate, keyframes, state, style, transition, trigger} from '@angular/animations';
 import {TimeVo} from './time-picker/time-vo';
-import {TimePickerComponent} from './time-picker/time-picker.component';
-import {DebugLog} from '../../util/debug-log';
 
 @Component({
   selector: 'app-date-time-picker',
@@ -57,10 +55,8 @@ export class DateTimePickerComponent {
   private _selectedDateTime: Date;
   @Output() onSelect: EventEmitter<Date>;
   @Input() defaultMonthToDisplay: Date;
-  @Input() timePicker: boolean;
+  private _timePicker: boolean;
   selectedTime: TimeVo;
-
-  @ViewChild('timePicker') timePickerComponent: TimePickerComponent;
 
   public navigatorOverlayVisible: boolean;
   public dateFooterVisible: boolean;
@@ -81,10 +77,22 @@ export class DateTimePickerComponent {
     this.navigatorOverlayVisible = false;
     this.dayGridManager.displayMonth(new Date());
     this.dayGridManager.onDisplayChange.subscribe(() => this.animateMonthChange = true);
-    // temp
-    this.dateFooterVisible = true;
-    this.timeFooterVisible = false;
-    this.timePicker = true;
+
+    this.dateFooterVisible = false;
+    this.timeFooterVisible = true;
+    this._timePicker = true;
+  }
+
+  get timePicker(): boolean {
+    return this._timePicker;
+  }
+
+  @Input()
+  set timePicker(displayTimePicker: boolean) {
+    this._timePicker = displayTimePicker;
+    if (!displayTimePicker && this.timeFooterVisible || displayTimePicker && !this.timeFooterVisible) {
+      this.changeFooter();
+    }
   }
 
   get changeState(): string {
@@ -200,23 +208,20 @@ export class DateTimePickerComponent {
   }
 
   public changeFooter(): void {
-    if (this.timePicker) {
-      const regularToggle = fieldName => this[fieldName] = !this[fieldName];
-      const timeoutToggle = fieldName => {
-        setTimeout(() => {
-          this[fieldName] = !this[fieldName];
-          this.cd.detectChanges();
-        }, 315);
-      };
+    const regularToggle = fieldName => this[fieldName] = !this[fieldName];
+    const timeoutToggle = fieldName => {
+      setTimeout(() => {
+        this[fieldName] = !this[fieldName];
+        this.cd.detectChanges();
+      }, 315);
+    };
 
-      if (this.dateFooterVisible) {
-        regularToggle('dateFooterVisible');
-        timeoutToggle('timeFooterVisible');
-      } else {
-        regularToggle('timeFooterVisible');
-        timeoutToggle('dateFooterVisible');
-      }
-
+    if (this.dateFooterVisible) {
+      regularToggle('dateFooterVisible');
+      timeoutToggle('timeFooterVisible');
+    } else {
+      regularToggle('timeFooterVisible');
+      timeoutToggle('dateFooterVisible');
     }
   }
 
